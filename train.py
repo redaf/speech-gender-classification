@@ -73,3 +73,7 @@ else:
         filename = os.path.join(models_dir, model_name + '.pkl')
         with open(filename, 'wb') as file:
             pickle.dump(model, file)
+
+filename = os.path.join(models_dir, 'scaler.pkl')
+with open(filename, 'wb') as file:
+            pickle.dump(scaler, file)
