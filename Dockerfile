@@ -10,3 +10,8 @@ RUN bash llvm.sh 10 && rm llvm.sh
 RUN LLVM_CONFIG=/usr/bin/llvm-config-10 pip install librosa pandas mglearn
 
 WORKDIR /home
+COPY train.py .
+COPY predict.py .
+COPY entrypoint.sh .
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["/bin/bash", "/home/entrypoint.sh"]
