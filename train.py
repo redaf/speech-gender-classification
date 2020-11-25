@@ -30,6 +30,8 @@ X_test = scaler.transform(data_test.iloc[:,0:n_params])
 y_train = list(data_train['label'].values)
 y_test = list(data_test['label'].values)
 
+print("Training models")
+
 #Train decision tree model
 tree = DecisionTreeClassifier(random_state=0).fit(X_train, y_train)
 print("Decision Tree")
@@ -69,11 +71,13 @@ try:
 except OSError:
     print('Creation of %s directory failed', models_dir)
 else:
+    print("Dumping models")
     for model_name, model in models.items():
         filename = os.path.join(models_dir, model_name + '.pkl')
         with open(filename, 'wb') as file:
             pickle.dump(model, file)
 
+print("Dumping scaler")
 filename = os.path.join(models_dir, 'scaler.pkl')
 with open(filename, 'wb') as file:
             pickle.dump(scaler, file)
